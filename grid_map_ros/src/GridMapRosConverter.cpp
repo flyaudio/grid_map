@@ -275,8 +275,8 @@ void GridMapRosConverter::toOccupancyGrid(const grid_map::GridMap& gridMap,
   const float cellRange = cellMax - cellMin;
 
   for (GridMapIterator iterator(gridMap); !iterator.isPastEnd(); ++iterator) {
-    float value = (gridMap.at(layer, *iterator) - dataMin) / (dataMax - dataMin);
-    if (isnan(value))
+    float value = (gridMap.at(layer, *iterator) - dataMin) / (dataMax - dataMin);//高度差,归一化
+    if (isnan(value))//not a number
       value = -1;
     else
       value = cellMin + min(max(0.0f, value), 1.0f) * cellRange;
