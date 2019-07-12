@@ -1,3 +1,7 @@
+1、根据高度百分比，将静态pointcloud/octomap/grip map transform to occupancy grid map
+
+
+
 # Grid Map
 
 ## Overview
