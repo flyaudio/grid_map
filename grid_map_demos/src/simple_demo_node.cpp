@@ -9,16 +9,17 @@ int main(int argc, char** argv)
 {
   // Initialize node and publisher.
   ros::init(argc, argv, "grid_map_simple_demo");
-  ros::NodeHandle nh("~");
+  ros::NodeHandle nh("~");//private node handle
+  //                                                              topic name
   ros::Publisher publisher = nh.advertise<grid_map_msgs::GridMap>("grid_map", 1, true);
 
   // Create grid map.
   GridMap map({"elevation"});
   map.setFrameId("map");
-  map.setGeometry(Length(1.2, 2.0), 0.03);
+  map.setGeometry(Length(1.2, 2.0), 0.03);//长 宽 resolution
   ROS_INFO("Created map with size %f x %f m (%i x %i cells).",
-    map.getLength().x(), map.getLength().y(),
-    map.getSize()(0), map.getSize()(1));
+    map.getLength().x(), map.getLength().y(),//长宽
+    map.getSize()(0), map.getSize()(1));//cell的数量; 1.2/0.03=40; 2.0/0.03=67
 
   // Work with grid map in a loop.
   ros::Rate rate(30.0);
