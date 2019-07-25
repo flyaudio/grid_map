@@ -313,15 +313,16 @@ bool GridMapRosConverter::initializeFromImage(const sensor_msgs::Image& image,
                                               const double resolution, grid_map::GridMap& gridMap,
                                               const grid_map::Position& position)
 {
-  const double lengthX = resolution * image.height;
+  const double lengthX = resolution * image.height;//resolution是meter/pixel吧??
   const double lengthY = resolution * image.width;
-  Length length(lengthX, lengthY);
+  Length length(lengthX, lengthY);//eigen的array
   gridMap.setGeometry(length, resolution, position);
   gridMap.setFrameId(image.header.frame_id);
   gridMap.setTimestamp(image.header.stamp.toNSec());
   return true;
 }
 
+//To add data as scalar values (typically from a grayscale image)
 bool GridMapRosConverter::addLayerFromImage(const sensor_msgs::Image& image,
                                             const std::string& layer, grid_map::GridMap& gridMap,
                                             const float lowerValue, const float upperValue,

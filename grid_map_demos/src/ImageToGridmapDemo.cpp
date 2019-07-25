@@ -37,7 +37,7 @@ bool ImageToGridmapDemo::readParameters()
 void ImageToGridmapDemo::imageCallback(const sensor_msgs::Image& msg)
 {
   if (!mapInitialized_) {
-    grid_map::GridMapRosConverter::initializeFromImage(msg, resolution_, map_);
+    grid_map::GridMapRosConverter::initializeFromImage(msg, resolution_, map_);//why缺少position变量??
     ROS_INFO("Initialized map with size %f x %f m (%i x %i cells).", map_.getLength().x(),
              map_.getLength().y(), map_.getSize()(0), map_.getSize()(1));
     mapInitialized_ = true;
